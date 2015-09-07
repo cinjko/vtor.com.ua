@@ -9,9 +9,13 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
+use yii\widgets\Menu;
 
 AppAsset::register($this);
 ?>
+
+
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -24,6 +28,7 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+
 
 <div class="wrap">
     <?php
@@ -58,7 +63,24 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
-        <?= $content ?>
+        <div class="col-md-2">
+            <div class="wrap">
+                <div class="left block">
+                    <?php
+                    echo Menu::widget([
+                        'options' => ['class' => 'nav nav-pills nav-stacked'],
+                        'items' => [
+                            ['label' => 'О нас', 'url' => ['about/index']],
+                        ],
+                    ]);
+                    ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <?= $content ?>
+        </div>
     </div>
 </div>
 
