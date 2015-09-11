@@ -4,6 +4,8 @@
 
 $this->title = 'Эмил ВторМет - Главная страница';
 ?>
+
+<?php $this->registerCssFile('@web/public/css/animate.css') ?>
 <!-- Begin main content-->
 <main>
     <!-- Begin images slider-->
@@ -32,6 +34,21 @@ $this->title = 'Эмил ВторМет - Главная страница';
         <!-- End for slides -->
     </div>
     <!-- End images slider-->
+
+    <?php foreach ($abouts as $about): ?>
+        <h1>
+            <?= $about->title ?>
+            <?php $images = $about->getImages() ?>
+            <?php foreach ($images as $image): ?>
+
+                <div class="col-md-3">
+                    <img src="<?= $image->getUrl('200x') ?>" alt=""/>
+                </div>
+
+            <?php endforeach; ?>
+            <?php  ?>
+        </h1>
+    <?php endforeach;?>
 
     <div class="container about">
         <div class="row">

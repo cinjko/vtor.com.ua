@@ -19,7 +19,6 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'public/css/main.css',
-        'public/css/animate.css',
         'public/css/bootstrap.css',
     ];
     public $js = [
@@ -27,7 +26,7 @@ class AppAsset extends AssetBundle
         'https://maps.googleapis.com/maps/api/js',
         'public/js/google.maps.api.js',
         'https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js',
-//        'public/js/bootstrap.js',
+        'public/js/bootstrap.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
