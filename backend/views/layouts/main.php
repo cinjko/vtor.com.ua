@@ -71,6 +71,7 @@ AppAsset::register($this);
                         'options' => ['class' => 'nav nav-pills nav-stacked'],
                         'items' => [
                             ['label' => 'О нас', 'url' => ['about/index']],
+                            ['label' => 'Преимущества', 'url' => ['benefits/index']],
                         ],
                     ]);
                     ?>

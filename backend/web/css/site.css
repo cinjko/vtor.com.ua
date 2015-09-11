@@ -96,7 +96,7 @@ a.desc:after {
     font-size: 18px;
     font-weight: bold;
     padding-top: 80px;
-    /*width: 200px;*/
+    height: inherit;
     float: left;
     border-bottom: 1px solid #666666;
 }

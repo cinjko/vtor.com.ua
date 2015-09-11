@@ -32,11 +32,9 @@ use yii\widgets\ActiveForm;
             <?php $images = $model->getImages() ?>
             <div class="row">
                 <?php foreach ($images as $image): ?>
-
                     <div class="col-md-3">
                         <img src="<?= $image->getUrl('200x') ?>" alt=""/>
                     </div>
-
                 <?php endforeach; ?>
             </div>
         </div>

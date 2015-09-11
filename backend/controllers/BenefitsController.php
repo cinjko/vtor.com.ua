@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\About;
-use backend\models\AboutSearh;
+use common\models\Benefits;
+use backend\models\BenefitsSearh;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AboutController implements the CRUD actions for About model.
+ * BenefitsController implements the CRUD actions for Benefits model.
  */
-class AboutController extends Controller
+class BenefitsController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class AboutController extends Controller
     }
 
     /**
-     * Lists all About models.
+     * Lists all Benefits models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AboutSearh();
+        $searchModel = new BenefitsSearh();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class AboutController extends Controller
     }
 
     /**
-     * Displays a single About model.
+     * Displays a single Benefits model.
      * @param integer $id
      * @return mixed
      */
@@ -54,26 +54,15 @@ class AboutController extends Controller
     }
 
     /**
-     * Creates a new About model.
+     * Creates a new Benefits model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new About();
+        $model = new Benefits();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-            $model->image = \yii\web\UploadedFile::getInstance($model, 'image');
-            if ($model->image) {
-                $path = Yii::getAlias('@webroot/upload/files/').$model->image->baseName.'.'.$model->image->extension;
-                $model->image->saveAs($path);
-                $model->attachImage($path);
-            }
-
-            $model->image = $path;
-            $model->save();
-
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -83,7 +72,7 @@ class AboutController extends Controller
     }
 
     /**
-     * Updates an existing About model.
+     * Updates an existing Benefits model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -93,14 +82,6 @@ class AboutController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-            $model->image = \yii\web\UploadedFile::getInstance($model, 'image');
-            if ($model->image) {
-                $path = Yii::getAlias('@webroot/upload/files/').$model->image->baseName.'.'.$model->image->extension;
-                $model->image->saveAs($path);
-                $model->attachImage($path);
-            }
-
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -110,32 +91,28 @@ class AboutController extends Controller
     }
 
     /**
-     * Deletes an existing About model.
+     * Deletes an existing Benefits model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-        $model = new About();
-        $model->image;
-
-        $mod = $this->findModel($id)->delete();
-
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the About model based on its primary key value.
+     * Finds the Benefits model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return About the loaded model
+     * @return Benefits the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = About::findOne($id)) !== null) {
+        if (($model = Benefits::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

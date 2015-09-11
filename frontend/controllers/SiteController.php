@@ -8,6 +8,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use common\models\About;
+use common\models\Benefits;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -74,9 +75,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
 //        $this->layout = 'lending';
-        $abouts = About::find()->all();
+        $abouts = About::find()->where('id')->all();
+        $benefits = Benefits::find()->where('id')->all();
         return $this->render('index',[
             'abouts' => $abouts,
+            'benefits' => $benefits,
         ]);
     }
 

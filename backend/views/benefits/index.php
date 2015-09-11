@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\AboutSearh */
+/* @var $searchModel backend\models\BenefitsSearh */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Abouts';
+$this->title = 'Benefits';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="about-index">
+<div class="benefits-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create About', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Benefits', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -27,10 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'text_ua:ntext',
-            'text_en:ntext',
-            'text_ru:ntext',
-            'image',
+            'title_number',
+            'text:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
