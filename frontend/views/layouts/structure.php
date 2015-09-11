@@ -10,6 +10,7 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use yii\helpers\VarDumper;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -37,7 +38,7 @@ AppAsset::register($this);
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-12">
-                    <a class="logo" href=""><span>Эмил</span>ВторМет!</a>
+                    <a class="logo" href="<?= Url::to(['site/index']) ?>"><span>Эмил</span>ВторМет!</a>
                 </div>
                 <div class="col-md-5 col-sm-12">
                     <h4>Закупка б/у электродвигателей, <br/> кабеля, а также лома черных <br/> ицветных металов</h4>
