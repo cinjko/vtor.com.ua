@@ -34,7 +34,7 @@ use yii\widgets\ActiveForm;
                 <?php foreach ($images as $image): ?>
 
                     <div class="col-md-3">
-                        <img src="<?= $image->getUrl('x300') ?>" alt=""/>
+                        <img src="<?= $image->getUrl('200x') ?>" alt=""/>
                     </div>
 
                 <?php endforeach; ?>

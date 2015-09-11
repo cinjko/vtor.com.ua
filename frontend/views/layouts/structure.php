@@ -10,7 +10,6 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use yii\helpers\VarDumper;
-//var_dump(AppAsset::register($this));die;
 
 AppAsset::register($this);
 ?>

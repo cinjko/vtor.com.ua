@@ -247,7 +247,7 @@ a.first-active {
 
 #myCarousel {
     height: 580px;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .slide_images {
