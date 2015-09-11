@@ -72,6 +72,7 @@ AppAsset::register($this);
                         'items' => [
                             ['label' => 'О нас', 'url' => ['about/index']],
                             ['label' => 'Преимущества', 'url' => ['benefits/index']],
+                            ['label' => 'Коментарии', 'url' => ['comments/index']],
                         ],
                     ]);
                     ?>
