@@ -28,7 +28,7 @@ class Team extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['full_name', 'position', 'image'], 'required'],
+            [['full_name', 'position'], 'required'],
             [['full_name', 'position', 'image'], 'string', 'max' => 255]
         ];
     }

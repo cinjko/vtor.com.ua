@@ -80,17 +80,19 @@ $this->title = 'Эмил ВторМет - Главная страница';
 
                     <div class="container">
                         <div class="row">
+                            <?php foreach ($teams as $team): ?>
                             <div class="col-md-6 text-center animated disabled" data-animated="fadeInUp">
 
                                 <figure>
                                     <img src="/public/images/team_2.jpg" alt=""/>
                                     <figcaption>
-                                        <h3>ГУСЕЙНОВ ЭТИБАР БАХЫШ ОГЛЫ</h3>
+                                        <h3><?= $team->full_name ?></h3>
 
-                                        <p>Управляющий партнер</p>
+                                        <p><?= $team->position ?></p>
                                     </figcaption>
                                 </figure>
                             </div>
+                            <?php endforeach; ?>
 
                             <div class="col-md-6 text-center animated disabled" data-animated="fadeInUp">
                                 <figure>
