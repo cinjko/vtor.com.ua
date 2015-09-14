@@ -8,6 +8,8 @@ use backend\models\AboutSearh;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\ActiveRecord;
+use rico\yii2images\models\Image;
 
 /**
  * AboutController implements the CRUD actions for About model.
@@ -117,12 +119,13 @@ class AboutController extends Controller
      */
     public function actionDelete($id)
     {
-        $model = new About();
-        $model->image;
+        $abouts = About::find()->where(['id' => $id])->one();
+        $image = $abouts->getImage();
+        $abouts->removeImage($image);
+
+
 
         $mod = $this->findModel($id)->delete();
-
-
         return $this->redirect(['index']);
     }
 
@@ -140,5 +143,10 @@ class AboutController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function afterDelete($id)
+    {
+
     }
 }
