@@ -74,7 +74,7 @@ class AboutController extends Controller
             }
 
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,

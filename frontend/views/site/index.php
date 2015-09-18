@@ -33,11 +33,13 @@ $this->title = 'Эмил ВторМет - Главная страница';
         </div>
         <!-- End for slides -->
     </div>
+
     <!-- End images slider-->
-    <?php foreach ($abouts as $about): ?>
     <div class="container about">
         <div class="row">
 
+        <!-- Begin about us-->
+        <?php foreach ($abouts as $about): ?>
             <div class="col-md-8 left animated fadeUp disabled" data-animated="fadeUp">
                 <h1><strong> <?= $about->title  ?> </strong></h1>
                 <?php $images = $about->getImages() ?>
@@ -52,11 +54,11 @@ $this->title = 'Эмил ВторМет - Главная страница';
                     <?php endif; ?>
                 </figure>
                 <?php endforeach; ?>
-
             </div>
         <?php endforeach;?>
+        <!-- End about us-->
 
-
+        <!-- Begin advantage-->
             <div class="col-md-4 right animated disabled" data-animated="fadeUp">
                 <h1><strong>Наши</strong> преимущесва</h1>
                 <ol>
@@ -70,21 +72,21 @@ $this->title = 'Эмил ВторМет - Главная страница';
                     <?php endforeach; ?>
                 </ol>
             </div>
+        <!-- End advantage-->
+
         </div>
     </div>
 
+    <!-- Begin team container-->
     <div class="team">
         <div class="container">
             <div class="row">
-
                 <div class="col-md-12 box">
                     <h1>Наша команда</h1>
-
                     <div class="container">
                         <div class="row">
                             <?php foreach ($teams as $team): ?>
                             <div class="col-md-6 text-center animated disabled" data-animated="fadeInUp">
-
                                 <figure>
                                     <?php $images_team = $team->getImages(); ?>
                                     <?php foreach ($images_team as $image_team) : ?>
@@ -98,47 +100,33 @@ $this->title = 'Эмил ВторМет - Главная страница';
                                 </figure>
                             </div>
                             <?php endforeach; ?>
-
-                            <div class="col-mad-6 text-center animated disabled" data-animated="fadeInUp">
-                                <figure>
-                                    <img src="/public/images/team_1.jpg" alt=""/>
-                                    <figcaption>
-                                        <h3>ГУСЕЙНОВА ЭМИЛИЯ ВЛАДИМИРОВНА</h3>
-
-                                        <p>Управляющий партнер</p>
-                                    </figcaption>
-                                </figure>
-
-                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-    <!-- Begin review-->
+    <!-- End team container-->
+
+    <!-- Begin comments-->
     <div class="review">
         <div class="container">
             <div class="tow">
                 <h1><strong>Отзивы</strong> клиентов</h1>
-
                 <div class="col-md-12">
                     <div class="row animated disabled" data-animated="fadeInDown">
-
                         <?php foreach ( $comments as $comment ): ?>
                             <div class="comment col-md-4">
                                 <p><?= $comment->comments ?></p>
                                 <h3><?= $comment->title ?></h3>
                             </div>
                         <?php endforeach; ?>
-
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
-    <!-- End review-->
+    <!-- End comments-->
 </main>
 <!-- End main content-->

@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\ActiveRecord;
+use yii\web\UploadedFile;
 
 
 /**
@@ -72,12 +73,11 @@ class TeamController extends Controller
                 $path = Yii::getAlias('@webroot/upload/files/').$model->image->baseName.'.'.$model->image->extension;
                 $model->image->saveAs($path);
                 $model->attachImage($path);
+                $model->image = $path;
+                $model->save();
             }
 
-            $model->image = $path;
-            $model->save();
-
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -96,7 +96,18 @@ class TeamController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+            $model->image = UploadedFile::getInstance($model, 'image');
+
+            if ($model->image) {
+                $path = Yii::getAlias('@webroot/upload/files/').$model->image->baseName.'.'.$model->image->extension;
+                $model->image = saveAs($path);
+                $model->attechImage();
+                $model->image = $path;
+                $model->save();
+            }
+
+            return $this->redirect(['index', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -113,8 +124,12 @@ class TeamController extends Controller
     public function actionDelete($id)
     {
         $model = Team::find()->where(['id'=>$id])->one();
-        $image = $model->getImage();
-        $model->removeImage($image);
+
+        if ($model->image) {
+            unlink($model->image);
+            $image = $model->getImage();
+            $model->removeImage($image);
+        }
 
         $this->findModel($id)->delete();
 
