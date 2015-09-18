@@ -74,6 +74,7 @@ AppAsset::register($this);
                             ['label' => 'Преимущества', 'url' => ['benefits/index']],
                             ['label' => 'Коментарии', 'url' => ['comments/index']],
                             ['label' => 'Команда', 'url' => ['team/index']],
+                            ['label' => 'Покупки', 'url' => ['purcheses/index']],
                         ],
                     ]);
                     ?>

@@ -68,8 +68,8 @@ AppAsset::register($this);
 
                     <div id="navbar-collapse" class="collapse navbar-collapse ">
                         <ul class="nav navbar-nav">
-                            <li><a class="first-active" href="#">Главная<span></span></a></li>
-                            <li><a href="pages/shopping.html">Что мы покупаем?<span></span></a></li>
+                            <li><?= Html::a('Главная', ['site/index']) ?><span></span></a></li>
+                            <li><?= Html::a('Что мы покупаем?', ['purcheses/index']) ?><span></span></a></li>
                             <li><a href="pages/gallery.php">Фотографии товара<span></span></a></li>
                             <li><a href="pages/contact.php">Контакты<span></span></a></li>
                         </ul>
