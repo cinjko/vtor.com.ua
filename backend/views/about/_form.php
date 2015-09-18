@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\About */
@@ -24,7 +25,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'text_ru')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'image')->fileInput(['maxlength' => true]) ?>
+    <?php Pjax::begin(); ?>
+        <?= $form->field($model, 'image')->fileInput(['maxlength' => true]) ?>
+    <?php Pjax::end(); ?>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

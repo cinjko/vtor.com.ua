@@ -43,11 +43,13 @@ $this->title = 'Эмил ВторМет - Главная страница';
                 <?php $images = $about->getImages() ?>
                 <?php foreach ($images as $image): ?>
                 <figure>
-                    <figcamption>
-                        <img src=" <?= $image->getUrl() ; ?> " alt=""/>
+                    <?php if ($image->getUrl() !== "/yii2images/images/image-by-item-and-alias?item=&dirtyAlias=placeHolder.png"): ?>
+                        <figcamption>
+                            <img src=" <?= $image->getUrl() ; ?> " alt=""/>
 
-                        <p> <?= $about->text_ru ?></p>
-                    </figcamption>
+                            <p> <?= $about->text_ru ?></p>
+                        </figcamption>
+                    <?php endif; ?>
                 </figure>
                 <?php endforeach; ?>
 
@@ -84,7 +86,10 @@ $this->title = 'Эмил ВторМет - Главная страница';
                             <div class="col-md-6 text-center animated disabled" data-animated="fadeInUp">
 
                                 <figure>
-                                    <img src="/public/images/team_2.jpg" alt=""/>
+                                    <?php $images_team = $team->getImages(); ?>
+                                    <?php foreach ($images_team as $image_team) : ?>
+                                    <img src="<?= $image_team->getUrl() ; ?>" alt=""/>
+                                    <?php endforeach; ?>
                                     <figcaption>
                                         <h3><?= $team->full_name ?></h3>
 
@@ -94,7 +99,7 @@ $this->title = 'Эмил ВторМет - Главная страница';
                             </div>
                             <?php endforeach; ?>
 
-                            <div class="col-md-6 text-center animated disabled" data-animated="fadeInUp">
+                            <div class="col-mad-6 text-center animated disabled" data-animated="fadeInUp">
                                 <figure>
                                     <img src="/public/images/team_1.jpg" alt=""/>
                                     <figcaption>

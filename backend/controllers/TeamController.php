@@ -8,6 +8,8 @@ use backend\models\TeamSearh;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\ActiveRecord;
+
 
 /**
  * TeamController implements the CRUD actions for Team model.
@@ -63,6 +65,18 @@ class TeamController extends Controller
         $model = new Team();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            $model->image = \yii\web\UploadedFile::getInstance($model, 'image');
+
+            if ($model->image) {
+                $path = Yii::getAlias('@webroot/upload/files/').$model->image->baseName.'.'.$model->image->extension;
+                $model->image->saveAs($path);
+                $model->attachImage($path);
+            }
+
+            $model->image = $path;
+            $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -98,6 +112,10 @@ class TeamController extends Controller
      */
     public function actionDelete($id)
     {
+        $model = Team::find()->where(['id'=>$id])->one();
+        $image = $model->getImage();
+        $model->removeImage($image);
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

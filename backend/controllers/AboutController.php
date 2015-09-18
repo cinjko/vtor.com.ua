@@ -8,8 +8,6 @@ use backend\models\AboutSearh;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\db\ActiveRecord;
-use rico\yii2images\models\Image;
 
 /**
  * AboutController implements the CRUD actions for About model.
@@ -65,16 +63,16 @@ class AboutController extends Controller
         $model = new About();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
             $model->image = \yii\web\UploadedFile::getInstance($model, 'image');
+
             if ($model->image) {
                 $path = Yii::getAlias('@webroot/upload/files/').$model->image->baseName.'.'.$model->image->extension;
                 $model->image->saveAs($path);
                 $model->attachImage($path);
+                $model->image = $path;
+                $model->save();
             }
 
-            $model->image = $path;
-            $model->save();
 
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -101,9 +99,10 @@ class AboutController extends Controller
                 $path = Yii::getAlias('@webroot/upload/files/').$model->image->baseName.'.'.$model->image->extension;
                 $model->image->saveAs($path);
                 $model->attachImage($path);
+                $model->save();
             }
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -119,13 +118,15 @@ class AboutController extends Controller
      */
     public function actionDelete($id)
     {
-        $abouts = About::find()->where(['id' => $id])->one();
-        $image = $abouts->getImage();
-        $abouts->removeImage($image);
+        $model = About::find()->where(['id' => $id])->one();
 
+        if ($model->image) {
+            unlink($model->image);
+        }
+        $image = $model->getImage();
+        $model->removeImage($image);
 
-
-        $mod = $this->findModel($id)->delete();
+        $this->findModel($id)->delete();
         return $this->redirect(['index']);
     }
 

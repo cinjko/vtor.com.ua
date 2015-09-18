@@ -45,4 +45,13 @@ class Team extends \yii\db\ActiveRecord
             'image' => 'Image',
         ];
     }
+
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ],
+        ];
+    }
 }
