@@ -99,6 +99,7 @@ class AboutController extends Controller
                 $path = Yii::getAlias('@webroot/upload/files/').$model->image->baseName.'.'.$model->image->extension;
                 $model->image->saveAs($path);
                 $model->attachImage($path);
+                $model->image = $path;
                 $model->save();
             }
 
@@ -122,9 +123,9 @@ class AboutController extends Controller
 
         if ($model->image) {
             unlink($model->image);
+            $image = $model->getImage();
+            $model->removeImage($image);
         }
-        $image = $model->getImage();
-        $model->removeImage($image);
 
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
