@@ -42,6 +42,7 @@ $this->title = 'Эмил ВторМет - Главная страница';
         <?php foreach ($abouts as $about): ?>
             <div class="col-md-8 left animated fadeUp disabled" data-animated="fadeUp">
                 <h1><strong> <?= $about->title  ?> </strong></h1>
+
                 <?php $images = $about->getImages() ?>
                 <?php foreach ($images as $image): ?>
                 <figure>

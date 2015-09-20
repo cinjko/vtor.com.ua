@@ -63,7 +63,18 @@ class PurchesesController extends Controller
         $model = new Purcheses();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+            $model->image = \yii\web\UploadedFile::getInstance($model, 'image');
+
+            if ($model->image) {
+                $path = Yii::getAlias('@webroot/upload/files/').$model->image->baseName.'.'.$model->image->extension;
+                $model->image->saveAs($path);
+                $model->attachImage($path);
+                $model->image = $path;
+                $model->save();
+            }
+
+            return $this->redirect(['index', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -82,7 +93,17 @@ class PurchesesController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+            $model->image = \yii\web\UploadedFile::getInstance($model, 'image');
+
+            if ($model->image) {
+                $path = Yii::getAlias('@webroot/upload/files/').$model->image->baseName.'.'.$model->image->extension;
+                $model->image = saveAs($path);
+                $model->attechImage();
+                $model->image = $path;
+                $model->save();
+            }
+            return $this->redirect(['index', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -98,6 +119,14 @@ class PurchesesController extends Controller
      */
     public function actionDelete($id)
     {
+        $model = Purcheses::find()->where(['id'=>$id])->one();
+
+        if ($model->image) {
+            unlink($model->image);
+            $image = $model->getImage();
+            $model->removeImage($image);
+        }
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

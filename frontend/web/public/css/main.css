@@ -406,6 +406,8 @@ div.team p {
 footer {
     font-family: 'Roboto', sans-serif;
     background: #272D33;
+    border-top: 8px solid #ffffff;
+    margin-top: -8px;
 }
 
 .footer {

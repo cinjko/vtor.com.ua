@@ -9,6 +9,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use common\models\About;
 use common\models\Comments;
+use common\models\Benefits;
 use common\models\Team;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -76,7 +77,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $abouts = About::find()->where('id')->all();
-        $benefits = Benefiteamsts::find()->where('id')->all();
+        $benefits = Benefits::find()->where('id')->all();
         $comments = Comments::find()->where('id')->all();
         $teams = Team::find()->where('id')->all();
 
