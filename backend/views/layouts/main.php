@@ -75,6 +75,7 @@ AppAsset::register($this);
                             ['label' => 'Коментарии', 'url' => ['comments/index']],
                             ['label' => 'Команда', 'url' => ['team/index']],
                             ['label' => 'Покупки', 'url' => ['purcheses/index']],
+                            ['label' => 'Галерея', 'url' => ['gallery/index']],
                         ],
                     ]);
                     ?>

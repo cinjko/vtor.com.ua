@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Purcheses;
-use backend\models\PurchesesSearh;
+use common\models\Gallery;
+use backend\models\GallerySearh;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PurchesesController implements the CRUD actions for Purcheses model.
+ * GalleryController implements the CRUD actions for Gallery model.
  */
-class PurchesesController extends Controller
+class GalleryController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class PurchesesController extends Controller
     }
 
     /**
-     * Lists all Purcheses models.
+     * Lists all Gallery models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PurchesesSearh();
+        $searchModel = new GallerySearh();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class PurchesesController extends Controller
     }
 
     /**
-     * Displays a single Purcheses model.
+     * Displays a single Gallery model.
      * @param integer $id
      * @return mixed
      */
@@ -54,24 +54,25 @@ class PurchesesController extends Controller
     }
 
     /**
-     * Creates a new Purcheses model.
+     * Creates a new Gallery model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Purcheses();
+        $model = new Gallery();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
             $model->image = \yii\web\UploadedFile::getInstance($model, 'image');
-
             if ($model->image) {
                 $path = Yii::getAlias('@webroot/upload/files/').$model->image->baseName.'.'.$model->image->extension;
                 $model->image->saveAs($path);
+//                var_dump($model->image->saveAs($path));die;
                 $model->attachImage($path);
                 $model->image = $path;
                 $model->save();
+
             }
 
             return $this->redirect(['index', 'id' => $model->id]);
@@ -83,7 +84,7 @@ class PurchesesController extends Controller
     }
 
     /**
-     * Updates an existing Purcheses model.
+     * Updates an existing Gallery model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -99,10 +100,11 @@ class PurchesesController extends Controller
             if ($model->image) {
                 $path = Yii::getAlias('@webroot/upload/files/').$model->image->baseName.'.'.$model->image->extension;
                 $model->image->saveAs($path);
-                $model->attechImage();
+                $model->attachImage($path);
                 $model->image = $path;
                 $model->save();
             }
+
             return $this->redirect(['index', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -112,14 +114,14 @@ class PurchesesController extends Controller
     }
 
     /**
-     * Deletes an existing Purcheses model.
+     * Deletes an existing Gallery model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-        $model = Purcheses::find()->where(['id'=>$id])->one();
+        $model = Gallery::find()->where(['id'=>$id])->one();
 
         if ($model->image) {
             unlink($model->image);
@@ -133,15 +135,15 @@ class PurchesesController extends Controller
     }
 
     /**
-     * Finds the Purcheses model based on its primary key value.
+     * Finds the Gallery model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Purcheses the loaded model
+     * @return Gallery the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Purcheses::findOne($id)) !== null) {
+        if (($model = Gallery::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

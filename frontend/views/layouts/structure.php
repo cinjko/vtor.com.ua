@@ -70,7 +70,7 @@ AppAsset::register($this);
                         <ul class="nav navbar-nav">
                             <li><?= Html::a('Главная', ['site/index']) ?><span></span></a></li>
                             <li><?= Html::a('Что мы покупаем?', ['purcheses/index']) ?><span></span></a></li>
-                            <li><a href="pages/gallery.php">Фотографии товара<span></span></a></li>
+                            <li><?= Html::a('Фотографии товара', ['gallery/index']) ?><span></span></a></li>
                             <li><a href="pages/contact.php">Контакты<span></span></a></li>
                         </ul>
 

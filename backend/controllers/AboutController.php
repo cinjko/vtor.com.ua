@@ -63,6 +63,7 @@ class AboutController extends Controller
         $model = new About();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             $model->image = \yii\web\UploadedFile::getInstance($model, 'image');
 
             if ($model->image) {

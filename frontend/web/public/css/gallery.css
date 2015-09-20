@@ -1,0 +1,12 @@
+div.photo {
+    margin-top: 30px !important;
+}
+
+div.photo > img {
+    height: 360px;
+    width: 360px;
+}
+
+footer {
+    margin-top: 22px !important;
+}
