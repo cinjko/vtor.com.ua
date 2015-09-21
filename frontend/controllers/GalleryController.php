@@ -9,12 +9,28 @@
 namespace frontend\controllers;
 
 use common\models\Gallery;
+use yii\data\Pagination;
 
 class GalleryController extends \yii\web\Controller
 {
     function actionIndex()
     {
-        $models = Gallery::find()->all();
-        return $this->render('index', ['models'=>$models]);
+        $query = Gallery::find();
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 3,
+            'totalCount' => $query->count(),
+        ]);
+
+        $images = $query->orderBy('id')
+                        ->offset($pagination->offset)
+                        ->limit($pagination->limit)
+                        ->all();
+
+
+        return $this->render('index', [
+            'images'     => $images,
+            'pagination' => $pagination,
+        ]);
     }
 }

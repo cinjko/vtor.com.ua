@@ -10,3 +10,19 @@ div.photo > img {
 footer {
     margin-top: 22px !important;
 }
+
+.pagination {
+    height: 36px;
+    margin: 30px 0 -6px 0 !important;
+    float: right;
+}
+
+ul.pagination > li > a{
+    color: #777;
+    border-color: #ddd;
+}
+
+ul.pagination > .active > a {
+    background: #FC5A0A;
+    border-color: #FC5A0A;
+}

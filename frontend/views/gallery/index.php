@@ -6,18 +6,21 @@
  * Time: 0:18
  */
 
+    use yii\widgets\LinkPager;
+
 $this->registerCssFile('/public/css/gallery.css');
 ?>
 
 <div class="container">
     <div class="row">
-        <?php foreach ($models as $model):?>
-            <?php $images = $model->getImages(); ?>
-            <?php foreach ($images as $image): ?>
+        <?php foreach ($images as $image):?>
+            <?php $img = $image->getImages(); ?>
+            <?php foreach ($img as $image): ?>
                 <div class="photo col-md-4">
                     <img src="<?= $image->getUrl() ?>" alt=""/>
                 </div>
             <?php endforeach; ?>
         <?php endforeach; ?>
     </div>
+    <?= LinkPager::widget(['pagination' => $pagination])  ?>
 </div>

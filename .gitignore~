@@ -31,3 +31,6 @@ phpunit.phar
 
 # lists of bugs
 bugs.txt
+
+# uploaded files
+/backend/web/upload/
