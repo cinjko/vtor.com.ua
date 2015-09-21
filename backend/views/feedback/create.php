@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Gallery */
+/* @var $model common\models\Feedback */
 
-$this->title = 'Create Gallery';
-$this->params['breadcrumbs'][] = ['label' => 'Galleries', 'url' => ['index']];
+$this->title = 'Create Feedback';
+$this->params['breadcrumbs'][] = ['label' => 'Feedbacks', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="gallery-create">
+<div class="feedback-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

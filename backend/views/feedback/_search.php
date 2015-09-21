@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\GallerySearh */
+/* @var $model backend\models\FeedbackSearh */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="gallery-search">
+<div class="feedback-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,7 +17,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'image') ?>
+    <?= $form->field($model, 'name') ?>
+
+    <?= $form->field($model, 'email') ?>
+
+    <?= $form->field($model, 'phone') ?>
+
+    <?= $form->field($model, 'data_time') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
