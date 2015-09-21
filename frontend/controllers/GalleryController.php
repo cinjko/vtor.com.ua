@@ -18,7 +18,7 @@ class GalleryController extends \yii\web\Controller
         $query = Gallery::find();
 
         $pagination = new Pagination([
-            'defaultPageSize' => 3,
+            'defaultPageSize' => 9,
             'totalCount' => $query->count(),
         ]);
 

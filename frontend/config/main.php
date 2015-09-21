@@ -52,6 +52,8 @@ return [
             'rules' => [
                 'login' => '/site/login',
                 'site' => '/site/index',
+                'gallery' => '/gallery/index',
+                'purcheses' => '/purcheses/index',
             ],
         ],
     ],
