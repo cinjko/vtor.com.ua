@@ -6,7 +6,7 @@
  * Time: 0:18
  */
 
-    use yii\widgets\LinkPager;
+use yii\widgets\LinkPager;
 
 $this->registerCssFile('/public/css/gallery.css');
 ?>

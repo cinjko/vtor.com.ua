@@ -71,7 +71,7 @@ AppAsset::register($this);
                             <li><?= Html::a('Главная', ['site/index']) ?><span></span></a></li>
                             <li><?= Html::a('Что мы покупаем?', ['purcheses/index']) ?><span></span></a></li>
                             <li><?= Html::a('Фотографии товара', ['gallery/index']) ?><span></span></a></li>
-                            <li><a href="pages/contact.php">Контакты<span></span></a></li>
+                            <li><?= Html::a('Контакты', ['feedback/index']) ?><span></span></a></li>
                         </ul>
 
                     </div>
