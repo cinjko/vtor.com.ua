@@ -9,6 +9,7 @@
 use yii\widgets\LinkPager;
 
 $this->registerCssFile('/public/css/gallery.css');
+$this->title = 'Эмил ВторМет - Фотографии товара';
 ?>
 
 <div class="container">

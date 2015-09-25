@@ -7,14 +7,32 @@
  */
 namespace frontend\controllers;
 
-use common\models\Feedback;
+use Yii;
+use yii\web\Controller;
+use frontend\models\Feedback;
 
-class FeedbackController extends \yii\web\Controller
+class FeedbackController extends Controller
 {
     function actionIndex()
     {
-        $models = Feedback::find()->all();
+        $model = new Feedback();
+        return $this->render('index', ['model' => $model]);
+    }
 
-        return $this->render('index', ['models' => $models]);
+    public function actionSend()
+    {
+        $model = new Feedback();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()){
+            $model->data_time = date('Y-m-d H:m:s');
+            $model->save();
+            return $this->render('success', [
+                'model' => $model
+            ]);
+        } else {
+            return $this->render('index', [
+                'model' =>$model
+            ]);
+        }
     }
 }

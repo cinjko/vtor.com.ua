@@ -1,8 +1,8 @@
 <?php
 
-namespace common\models;
+namespace frontend\models;
 
-use Yii;
+use yii\base\Model;
 
 /**
  * This is the model class for table "tbl_feedback".
@@ -11,28 +11,27 @@ use Yii;
  * @property string $name
  * @property string $email
  * @property integer $phone
+ * @property integer $massage
  * @property string $data_time
  */
-class Feedback extends \yii\db\ActiveRecord
+class Feedback extends Model
 {
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'tbl_feedback';
-    }
-
+    public $name;
+    public $email;
+    public $phone;
+    public $massage;
+    public $data_time;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['name', 'email'], 'required'],
+            [['name', 'email', 'phone','massage'], 'required'],
             [['phone'], 'integer'],
+            [['email'], 'email'],
             [['data_time'], 'safe'],
-            [['name', 'email'], 'string', 'max' => 255]
+            [['name', 'email', 'massage'], 'string', 'max' => 255]
         ];
     }
 
@@ -48,5 +47,12 @@ class Feedback extends \yii\db\ActiveRecord
             'phone' => 'Phone',
             'data_time' => 'Data Time',
         ];
+    }
+
+    public function saveFeedbackForm($value)
+    {
+        if ($value){
+
+        }
     }
 }

@@ -9,6 +9,7 @@
 /* @var $this yii\web\View */
 
 $this->registerCssFile('/public/css/common.css');
+$this->title = 'Эмил ВторМет - Что мы покупаем!';
 ?>
 <?php foreach ($models as $model): ?>
 <div class="container-wrapper">

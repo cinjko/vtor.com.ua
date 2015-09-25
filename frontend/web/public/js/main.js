@@ -35,7 +35,6 @@ $(document).ready(function() {
 
     $('#navbar-collapse li a').on('click', function() {
         $('#navbar-collapse li a.first-active').removeClass('first-active');
-        console.log($(this));
         $(this).addClass('first-active');
     })
 
