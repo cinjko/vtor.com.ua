@@ -23,9 +23,9 @@ class FeedbackController extends Controller
     {
         $model = new Feedback();
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()){
+        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])){
             $model->data_time = date('Y-m-d H:m:s');
-            $model->save();
+//            $model->save();
             return $this->render('success', [
                 'model' => $model
             ]);

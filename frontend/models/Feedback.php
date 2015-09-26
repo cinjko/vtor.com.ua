@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use yii\base\Model;
+use Yii;
 
 /**
  * This is the model class for table "tbl_feedback".
@@ -49,10 +50,28 @@ class Feedback extends Model
         ];
     }
 
-    public function saveFeedbackForm($value)
+    public function contact($email)
     {
-        if ($value){
+        $content = "<p>Data and time: " . $this->data_time . "</p>";
+        $content .= "<p>Email: " . $this->email . "</p>";
+        $content .= "<p>Name: " . $this->name. "</p>";
+        $content .= "<p>Phone: " . $this->phone . "</p>";
+        $content .= "<p>Massage: " . $this->massage . "</p>";
 
+        try {
+            Yii::$app->mailer->compose('layouts/html', ['content' => $content])
+                ->setFrom('from@domain.com')
+                ->setTo($email)
+//                ->setSubject($content->subject)
+                ->send();
+//            Yii::$app->mailer->compose("layouts/html", ['content' => $content])
+//                ->setTo($email)
+//                ->setFrom([$this->email => $this->name])
+////            ->setSubject($this->subject)
+////            ->setTextBody($this->body)
+//                ->send();
+        } catch (Exeption $e) {
+            echo "Помилка типу" . $e->getMessage();die;
         }
     }
 }
