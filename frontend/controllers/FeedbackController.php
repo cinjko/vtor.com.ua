@@ -23,8 +23,8 @@ class FeedbackController extends Controller
     {
         $model = new Feedback();
 
+        $model->data_time = date('Y-m-d H:m:s');
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])){
-            $model->data_time = date('Y-m-d H:m:s');
 //            $model->save();
             return $this->render('success', [
                 'model' => $model

@@ -52,26 +52,31 @@ class Feedback extends Model
 
     public function contact($email)
     {
-        $content = "<p>Data and time: " . $this->data_time . "</p>";
-        $content .= "<p>Email: " . $this->email . "</p>";
-        $content .= "<p>Name: " . $this->name. "</p>";
-        $content .= "<p>Phone: " . $this->phone . "</p>";
-        $content .= "<p>Massage: " . $this->massage . "</p>";
+        $content = "<p>Data and time: " . $this->data_time . "</p><br/>";
+        $content .= "<p>Email: " . $this->email . "</p><br/>";
+        $content .= "<p>Name: " . $this->name. "</p><br/>";
+        $content .= "<p>Phone: " . $this->phone . "</p><br/>";
+        $content .= "<p>Massage: " . $this->massage . "</p><br/>";
 
-        try {
-            Yii::$app->mailer->compose('layouts/html', ['content' => $content])
-                ->setFrom('from@domain.com')
-                ->setTo($email)
-//                ->setSubject($content->subject)
-                ->send();
+        if ($this->validate()) {
+            try {
+                Yii::$app->mailer->compose('layouts/html', ['content' => $content])
+                    ->setFrom($email)
+                    ->setTo('cinjko21@gmail.com')
+                    ->setSubject('Vtormet comment!')
+                    ->send();
+                return true;
 //            Yii::$app->mailer->compose("layouts/html", ['content' => $content])
 //                ->setTo($email)
 //                ->setFrom([$this->email => $this->name])
 ////            ->setSubject($this->subject)
 ////            ->setTextBody($this->body)
 //                ->send();
-        } catch (Exeption $e) {
-            echo "Помилка типу" . $e->getMessage();die;
+            } catch (Exeption $e) {
+                echo "Помилка типу" . $e->getMessage();die;
+            }
+        } else {
+            return false;
         }
     }
 }
