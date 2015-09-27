@@ -12,7 +12,8 @@ class m150921_202610_create_feedback_table extends Migration
             'name'      => Schema::TYPE_STRING.' NOT NULL',
             'email'     => Schema::TYPE_STRING.' NOT NULL',
             'phone'     => Schema::TYPE_INTEGER,
-            'data_time' => Schema::TYPE_DATE,
+            'message'   => Schema::TYPE_TEXT,
+            'date_time' => Schema::TYPE_DATE,
         ]);
     }
 

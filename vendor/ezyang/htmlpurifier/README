@@ -1,6 +1,6 @@
 
 README
-    All about HTML Purifier
+    All about HTMLPurifier
 
 HTML Purifier is an HTML filtering solution that uses a unique combination
 of robust whitelists and agressive parsing to ensure that not only are

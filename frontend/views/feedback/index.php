@@ -52,7 +52,7 @@ $this->title = 'Эмил ВторМет - Контакт';
                     </div>
 
                     <div class="form-group col-md-12">
-                        <?= $form->field($model, 'massage', [
+                        <?= $form->field($model, 'message', [
                             'inputOptions' => [
                                 'placeholder' => 'Соопщение:'
                             ]

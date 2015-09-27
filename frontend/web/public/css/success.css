@@ -1,0 +1,5 @@
+.success h2, p {
+    margin: 30px auto;
+    color: #fc5a0a;
+    font-weight: bold;
+}
