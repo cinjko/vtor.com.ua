@@ -8,6 +8,7 @@ use backend\models\LanguagesSearh;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\widgets\MailWidget;
 
 /**
  * FeedbackController implements the CRUD actions for Feedback model.
@@ -41,7 +42,7 @@ class FeedbackController extends Controller
 
     /**
      * Creates a new Feedback model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * If creation is successful, the browser will be redirected to the 'success' page.
      * @return mixed
      */
     public function actionSend()
@@ -49,7 +50,17 @@ class FeedbackController extends Controller
         $model = new Feedback();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->date_time = date('Y-m-d h:m:s');
+            $text = $model->name;
+            $text .= $model->email;
+            $text .= $model->phone;
+            $text .= $model->message;
+            $text .= $model->date_time = date('Y-m-d h:m:s');
+
+            $mail = MailWidget::widget(['email' => $model->email, 'text' => $text, 'subject' => 'Комментарий']);
+
+            if (!$mail) {
+                return false;
+            }
             $model->save();
 
             return $this->render('success', [

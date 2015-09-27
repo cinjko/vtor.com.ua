@@ -1,5 +1,16 @@
-.success h2, p {
-    margin: 30px auto;
-    color: #fc5a0a;
+.success {
+    line-height: 70px;
+    height: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.success h2 {
+    margin-top: 40px;
     font-weight: bold;
+    font-size: 2.5em;
+}
+
+.success p {
+    color: #fc5a0a;
 }

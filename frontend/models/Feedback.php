@@ -30,9 +30,9 @@ class Feedback extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'email', 'message', 'phone'], 'required'],
-            [['phone'], 'integer'],
-            [['email'], 'email'],
+            [['name', 'email', 'message', 'phone'], 'required', 'message' => 'Заполните поле {attribute}!'],
+            [['phone'], 'integer', 'message' => 'Не верно указан телефон!'],
+            [['email'], 'email', 'message' => 'Не верно указан {attribute}!'],
             [['date_time'], 'safe'],
             [['name', 'email'], 'string', 'max' => 255]
         ];
@@ -45,10 +45,10 @@ class Feedback extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Имя',
             'email' => 'Email',
-            'phone' => 'Phone',
-            'message' => 'Message',
+            'phone' => 'Телефон',
+            'message' => 'Соопщение',
             'date_time' => 'Data Time',
         ];
     }
