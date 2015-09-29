@@ -54,6 +54,7 @@ return [
                 'site' => '/site/index',
                 'gallery' => '/gallery/index',
                 'purcheses' => '/purcheses/index',
+                'feedback' => '/feedback/index',
             ],
         ],
     ],

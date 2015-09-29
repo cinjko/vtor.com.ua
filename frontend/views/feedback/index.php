@@ -54,7 +54,7 @@ $this->title = 'Эмил ВторМет - Контакт';
                     <div class="form-group col-md-12">
                         <?= $form->field($model, 'message', [
                             'inputOptions' => [
-                                'placeholder' => 'Соопщение:'
+                                'placeholder' => 'Сообщение:'
                             ]
                         ])->textarea() ?>
                     </div>

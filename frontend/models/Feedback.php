@@ -48,7 +48,7 @@ class Feedback extends \yii\db\ActiveRecord
             'name' => 'Имя',
             'email' => 'Email',
             'phone' => 'Телефон',
-            'message' => 'Соопщение',
+            'message' => 'Сообщение',
             'date_time' => 'Data Time',
         ];
     }

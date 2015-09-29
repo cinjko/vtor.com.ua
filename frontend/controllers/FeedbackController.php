@@ -50,14 +50,18 @@ class FeedbackController extends Controller
         $model = new Feedback();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $text = $model->name;
-            $text .= $model->email;
-            $text .= $model->phone;
-            $text .= $model->message;
-            $text .= $model->date_time = date('Y-m-d h:m:s');
+            $text = $model->date_time  = "<p> <bold>" . date('Y-m-d h:m:s') . "</bold> </p>";
+            $text .= "<h3> Имя: " . $model->name . "</h3>";
+            $text .= "<p>Email: <i>" . $model->email . "</i></p>";
+            $text .= "<p> Телефон: " . $model->phone . "</p>";
+            $text .= "<p> Сообщение: " . $model->message . "</p>";
 
-            $mail = MailWidget::widget(['email' => $model->email, 'text' => $text, 'subject' => 'Комментарий']);
-
+            $mail = MailWidget::widget([
+                'email' => 'cinjko21@gmail.com',
+                'text' => $text,
+                'client_email' => $model->email,
+                'subject' => 'Комментарий'
+            ]);
             if (!$mail) {
                 return false;
             }
